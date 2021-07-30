@@ -2,40 +2,40 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { format } from "date-fns";
 import { dayColors } from "../Constants";
-import { rapidKey } from "./key";
+// import { rapidKey } from "./key";
 
 const NewsFeed = ({ today }) => {
   const [articles, setArticles] = useState([]);
 
-  useEffect(() => {
-    if (localStorage.getItem("date") === format(today, "yyyy-MM-dd")) {
-      console.log("Local storage is fine");
-      setArticles(JSON.parse(localStorage.getItem("articles")));
-    } else {
-      console.log("LOCAL STORAGE: needs to be updated");
+  // useEffect(() => {
+  //   if (localStorage.getItem("date") === format(today, "yyyy-MM-dd")) {
+  //     console.log("Local storage is fine");
+  //     setArticles(JSON.parse(localStorage.getItem("articles")));
+  //   } else {
+  //     console.log("LOCAL STORAGE: needs to be updated");
 
-      fetch(
-        "https://google-news.p.rapidapi.com/v1/geo_headlines?lang=en&country=CA&geo=Montreal",
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-key": rapidKey,
-            "x-rapidapi-host": "google-news.p.rapidapi.com",
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((response) => {
-          console.log(response);
-          setArticles(response.articles.slice(0, 15));
-          localStorage.setItem("date", format(today, "yyyy-MM-dd"));
-          localStorage.setItem("articles", JSON.stringify(response.articles));
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [today]);
+  //     fetch(
+  //       "https://google-news.p.rapidapi.com/v1/geo_headlines?lang=en&country=CA&geo=Montreal",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "x-rapidapi-key": rapidKey,
+  //           "x-rapidapi-host": "google-news.p.rapidapi.com",
+  //         },
+  //       }
+  //     )
+  //       .then((res) => res.json())
+  //       .then((response) => {
+  //         console.log(response);
+  //         setArticles(response.articles.slice(0, 15));
+  //         localStorage.setItem("date", format(today, "yyyy-MM-dd"));
+  //         localStorage.setItem("articles", JSON.stringify(response.articles));
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+  // }, [today]);
 
   let colorIndex = 0;
 
@@ -47,7 +47,7 @@ const NewsFeed = ({ today }) => {
             <AnchorBox target="_blank" href={article.link} key={article.id}>
               <ArticleBox
                 style={{
-                  backgroundColor: `${dayColors[colorIndex++]}`,
+                  backgroundColor: `${dayColors[colorIndex++]}`
                 }}
               >
                 <Title>

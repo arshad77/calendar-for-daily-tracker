@@ -10,7 +10,6 @@ import { MdToday } from "react-icons/md";
 import NewsFeed from "./NewsFeed";
 import plannerLogo from "./planner_logo.png";
 import NewEventDialog from "../Components/NewEventDialog";
-import Weather from "./Weather";
 
 const Homepage = () => {
   const today = new Date();
@@ -87,22 +86,12 @@ const Homepage = () => {
           <IconText>Month</IconText>
         </ActionIcon>
       </ActionSec>
-      <Focus>Focus Mode</Focus>
-      <Weather />
       <NewsFeed today={today} />
       <NewEventDialog />
     </Wrapper>
   );
 };
-const Focus = styled.div`
-  background-color: #4d4caa;
-  border-radius: 10px;
-  margin: 10px;
-  padding: 15px;
-  color: white;
-  font-size: 2rem;
-  font-weight: 200;
-`;
+
 const Wrapper = styled.div`
   background-color: ${COLORS.background};
   margin: 0;
